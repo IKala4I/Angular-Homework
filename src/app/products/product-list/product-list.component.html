@@ -1,19 +1,35 @@
 <div class="search">
   <form action="#">
     <label>Filter by tag
-      <select>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+      <select #tagsList (change)="filterProducts(tagsList.value)">
+        <option value="all" selected>All</option>
+        @for (tag of tags;track tag.id) {
+          <option value="{{tag.name}}">{{ tag.name }}</option>
+        }
       </select>
     </label>
   </form>
 </div>
 
 <div class="list">
-  <ul>
-    <li (click)="showDetail()">Product 1</li>
-    <li>Product 2</li>
-    <li>Product 3</li>
-  </ul>
+  @if (!filteredProducts?.length) {
+    <div>Nothing found</div>
+  } @else {
+    <ul>
+      @for (product of filteredProducts;track product.id) {
+        <li>
+          <div class="card">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.price | currency }}</p>
+            @if (product.tags) {
+              @for (tag of product.tags;track tag.id) {
+                <p>{{ tag.name }}</p>
+              }
+            }
+            <button (click)="showDetail(product.id)">show details</button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
 </div>
