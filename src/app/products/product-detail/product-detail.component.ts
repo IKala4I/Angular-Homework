@@ -16,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   id!: string | null;
 
   constructor(private location: Location, private activatedRoute: ActivatedRoute) {
+    console.log('Product Detail Component constructor')
   }
 
   ngOnInit(): void {

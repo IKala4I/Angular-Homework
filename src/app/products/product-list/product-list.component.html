@@ -1,16 +1,4 @@
-<div class="search">
-  <form action="#">
-    <label>no tags
-      <input type="checkbox" name="noTags" value="noTags" (change)="onCheckChange($event)">
-    </label>
-    @for (tag of tags;track tag.id) {
-      <label>{{ tag.name }}
-        <input type="checkbox" [name]="tag.name" [value]="tag.name" (change)="onCheckChange($event)" [disabled]="isNoTags">
-      </label>
-    }
-  </form>
-</div>
-
+<app-filter-form (tagChecked)="filterProducts($event)"></app-filter-form>
 <div class="list">
   @if (!filteredProducts?.length) {
     <div>Nothing found</div>
@@ -27,6 +15,7 @@
               }
             }
             <button (click)="showDetail(product.id)">show details</button>
+            <button (click)="deleteProduct(product.id)">Delete {{product.name}}</button>
           </div>
         </li>
       }

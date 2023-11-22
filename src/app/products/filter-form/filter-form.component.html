@@ -1,0 +1,13 @@
+<div class="search">
+  <form action="#">
+    <label>no tags
+      <input type="checkbox" name="noTags" value="noTags" (change)="onCheckChange($event)">
+    </label>
+    @for (tag of tags;track tag.id) {
+      <label>{{ tag.name }}
+        <input type="checkbox" [name]="tag.name" [value]="tag.name" (change)="onCheckChange($event)"
+               [disabled]="isNoTags">
+      </label>
+    }
+  </form>
+</div>

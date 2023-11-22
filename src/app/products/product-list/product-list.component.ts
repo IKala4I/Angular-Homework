@@ -1,103 +1,49 @@
 import {Component, OnInit} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {Router} from '@angular/router'
-import {IProduct, ITag} from '../product.model'
-import PRODUCTS from '../mock-data/products'
-import TAGS from '../mock-data/tags'
+import {IProduct} from '../product.model'
+import {ProductsService} from '../services/products.service'
+import {FilterFormComponent} from '../filter-form/filter-form.component'
+import {ICheckbox} from '../interfaces/interfaces'
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FilterFormComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent implements OnInit {
   private products!: IProduct[]
-  tags!: ITag[]
 
-  filteredProducts?: IProduct[]
-  selectedTags!: string[]
+  filteredProducts!: IProduct[] | null
 
-  isNoTags: boolean = false
-
-  constructor(private router: Router) {
+  constructor(private router: Router, private productService: ProductsService) {
+    console.log('Product Component constructor')
   }
 
   ngOnInit(): void {
-    this.products = PRODUCTS
-    this.tags = TAGS
+    console.log('Product Component onInit')
+    this.products = this.productService.getAllProducts()
     this.filteredProducts = this.products
-    this.selectedTags = []
   }
 
   public showDetail(id: string) {
     this.router.navigate(['detail', id])
   }
 
-  public onCheckChange(event: Event) {
-    const input = event.target as HTMLInputElement
-
-    if (input.value === 'noTags') {
-      if (input.checked) {
-        this.isNoTags = true
-        this.filteredProducts = this.products.filter(product => !product.tags)
-      } else {
-        this.isNoTags = false
-        if (this.selectedTags.length) {
-          this.filteredProducts = this.products.filter(product => {
-            if (product.tags) {
-              const names: string[] = product.tags.map(tag => tag.name)
-              let isContainAllTags = true
-              this.selectedTags.every(tag => {
-                if (!names.includes(tag)) {
-                  isContainAllTags = false
-                  return false
-                }
-                return true
-              })
-              if (isContainAllTags)
-                return product
-            }
-            return
-          })
-        } else
-          this.filteredProducts = this.products
-      }
-    } else {
-      if (input.checked) {
-        this.filteredProducts = this.filteredProducts?.filter(product => {
-          if (product.tags) {
-            const names: string[] = product.tags.map(tag => tag.name)
-            if (names.includes(input.value))
-              return product
-          }
-          return
-        })
-        this.selectedTags.push(input.value)
-      } else {
-        this.selectedTags = this.selectedTags.filter(tag => tag !== input.value)
-
-        if (this.selectedTags.length) {
-          this.filteredProducts = this.products.filter(product => {
-            if (product.tags) {
-              const names: string[] = product.tags.map(tag => tag.name)
-              let isContainAllTags = true
-              this.selectedTags.every(tag => {
-                if (!names.includes(tag)) {
-                  isContainAllTags = false
-                  return false
-                }
-                return true
-              })
-              if (isContainAllTags)
-                return product
-            }
-            return
-          })
-        } else
-          this.filteredProducts = this.products
-      }
+  filterProducts(checkboxProps: ICheckbox) {
+    if (checkboxProps.value === 'noTags' && checkboxProps.checked)
+      this.filteredProducts = this.productService.getNoTagsProducts()
+    else {
+      this.productService.updateSelectedTags(checkboxProps)
+      this.filteredProducts = this.productService.getProductsFilteredByTags(checkboxProps.checked)
     }
+  }
+
+  deleteProduct(productId: string) {
+    this.productService.deleteProduct(productId)
+    this.products = this.productService.getAllProducts()
+    this.filteredProducts = this.productService.getFilteredProducts()
   }
 }
