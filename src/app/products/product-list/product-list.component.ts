@@ -1,15 +1,17 @@
 import {Component, OnInit} from '@angular/core'
 import {CommonModule} from '@angular/common'
-import {Router} from '@angular/router'
+import {RouterLink} from '@angular/router'
 import {IProduct} from '../product.model'
 import {ProductsService} from '../services/products.service'
 import {FilterFormComponent} from '../filter-form/filter-form.component'
 import {ICheckbox} from '../interfaces/interfaces'
+import {CreateProductFormComponent} from '../create-product-form/create-product-form.component'
+import {ProductCardComponent} from './product-card/product-card.component'
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, FilterFormComponent],
+  imports: [CommonModule, FilterFormComponent, CreateProductFormComponent, RouterLink, ProductCardComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
@@ -17,8 +19,9 @@ export class ProductListComponent implements OnInit {
   private products!: IProduct[]
 
   filteredProducts!: IProduct[] | null
+  shouldHideFilterForm!: boolean
 
-  constructor(private router: Router, private productService: ProductsService) {
+  constructor(private productService: ProductsService) {
     console.log('Product Component constructor')
   }
 
@@ -26,10 +29,7 @@ export class ProductListComponent implements OnInit {
     console.log('Product Component onInit')
     this.products = this.productService.getAllProducts()
     this.filteredProducts = this.products
-  }
-
-  public showDetail(id: string) {
-    this.router.navigate(['detail', id])
+    this.shouldHideFilterForm = false
   }
 
   filterProducts(checkboxProps: ICheckbox) {
@@ -45,5 +45,9 @@ export class ProductListComponent implements OnInit {
     this.productService.deleteProduct(productId)
     this.products = this.productService.getAllProducts()
     this.filteredProducts = this.productService.getFilteredProducts()
+  }
+
+  toggleEditMode() {
+    this.shouldHideFilterForm = !this.shouldHideFilterForm
   }
 }

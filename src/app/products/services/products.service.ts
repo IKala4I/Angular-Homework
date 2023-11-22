@@ -84,4 +84,12 @@ export class ProductsService {
       return this._products.find(product => product.id === productId)
     return undefined
   }
+
+  addProduct(product: IProduct) {
+    this._products = [...this._products, product]
+    if (product.tags.length)
+      this.filteredProducts = [...this.filteredProducts, product]
+    else
+      this.noTagsProducts = [...this.noTagsProducts, product]
+  }
 }

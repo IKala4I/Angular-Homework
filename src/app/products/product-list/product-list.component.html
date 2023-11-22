@@ -1,4 +1,7 @@
-<app-filter-form (tagChecked)="filterProducts($event)"></app-filter-form>
+<app-filter-form (tagChecked)="filterProducts($event)" [hidden]="shouldHideFilterForm"></app-filter-form>
+
+<a routerLink="/product-list/create-product">Add new product</a>
+
 <div class="list">
   @if (!filteredProducts?.length) {
     <div>Nothing found</div>
@@ -6,19 +9,9 @@
     <ul>
       @for (product of filteredProducts;track product.id) {
         <li>
-          <div class="card">
-            <h3>{{ product.name }}</h3>
-            <p>{{ product.price | currency }}</p>
-            @if (product.tags) {
-              <div class="tags">
-                @for (tag of product.tags;track tag.id) {
-                  <p class="tag">{{ tag.name }}</p>
-                }
-              </div>
-            }
-            <button (click)="showDetail(product.id)">show details</button>
-            <button (click)="deleteProduct(product.id)">Delete {{ product.name }}</button>
-          </div>
+          <app-product-card (productDeleted)="deleteProduct($event)" [product]="product"
+                            (editModeToggled)="toggleEditMode()"
+                            [isEditButtonDisabled]="shouldHideFilterForm"></app-product-card>
         </li>
       }
     </ul>

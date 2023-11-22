@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import TAGS from '../mock-data/tags'
-import {ITag} from '../product.model'
+import {IProduct, ITag} from '../product.model'
 import {ICheckbox} from '../interfaces/interfaces';
 
 @Injectable({
@@ -35,5 +35,23 @@ export class TagsService {
       this.selectedTags.push(checkboxProps.value)
     else
       this.selectedTags = this.selectedTags.filter(tagName => tagName !== checkboxProps.value)
+  }
+
+  private findTagById(tagId: number): ITag {
+    return this.tags.find(tag => tag.id === tagId) as ITag
+  }
+
+  private findTagByName(tagName: string): ITag {
+    return this.tags.find(tag => tag.name === tagName) as ITag
+  }
+
+  addTagByIdToProduct(product: IProduct, tagId: number) {
+    const tag = this.findTagById(tagId)
+    product.addTag(tag)
+  }
+
+  addTagByNameToProduct(product: IProduct, tagName: string) {
+    const tag = this.findTagByName(tagName)
+    product.addTag(tag)
   }
 }
