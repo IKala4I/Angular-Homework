@@ -1,4 +1,4 @@
-import {Injectable, OnChanges, SimpleChanges} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {TagsService} from './tags.service'
 import {IProduct, ITag} from '../product.model'
 import PRODUCTS from '../mock-data/products'
@@ -77,5 +77,11 @@ export class ProductsService {
       this.filteredProducts = this.filteredProducts.filter(product => product.id !== productId)
     else
       this.noTagsProducts = this.noTagsProducts.filter(product => product.id !== productId)
+  }
+
+  findProductById(productId: string | null): IProduct | undefined {
+    if (productId)
+      return this._products.find(product => product.id === productId)
+    return undefined
   }
 }

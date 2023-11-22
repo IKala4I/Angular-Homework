@@ -10,12 +10,14 @@
             <h3>{{ product.name }}</h3>
             <p>{{ product.price | currency }}</p>
             @if (product.tags) {
-              @for (tag of product.tags;track tag.id) {
-                <p>{{ tag.name }}</p>
-              }
+              <div class="tags">
+                @for (tag of product.tags;track tag.id) {
+                  <p class="tag">{{ tag.name }}</p>
+                }
+              </div>
             }
             <button (click)="showDetail(product.id)">show details</button>
-            <button (click)="deleteProduct(product.id)">Delete {{product.name}}</button>
+            <button (click)="deleteProduct(product.id)">Delete {{ product.name }}</button>
           </div>
         </li>
       }

@@ -3,6 +3,7 @@ import {CommonModule, Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router'
 import {IProduct} from '../product.model'
 import PRODUCTS from '../mock-data/products'
+import {ProductsService} from '../services/products.service'
 
 @Component({
   selector: 'app-product-detail',
@@ -13,15 +14,14 @@ import PRODUCTS from '../mock-data/products'
 })
 export class ProductDetailComponent implements OnInit {
   product?: IProduct;
-  id!: string | null;
 
-  constructor(private location: Location, private activatedRoute: ActivatedRoute) {
+  constructor(private location: Location, private activatedRoute: ActivatedRoute, private productService: ProductsService) {
     console.log('Product Detail Component constructor')
   }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id')
-    this.product = PRODUCTS.find(product => product.id === this.id)
+    const id: string | null = this.activatedRoute.snapshot.paramMap.get('id')
+    this.product = this.productService.findProductById(id)
   }
 
   goBack() {

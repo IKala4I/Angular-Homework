@@ -1,0 +1,21 @@
+/* Styles for the filter-form component */
+
+.search {
+  margin-bottom: 16px;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-right: 16px;
+
+      input[type="checkbox"] {
+        margin-right: 8px;
+      }
+    }
+  }
+}
