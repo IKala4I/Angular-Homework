@@ -1,5 +1,6 @@
-import {IProduct, Product} from '../product.model'
 import TAGS from './tags'
+import {Product} from '../product.model'
+import {IProduct} from '../interfaces/interfaces'
 
 const PRODUCTS: IProduct[] = [
   new Product('meal', 150, [], 'cool meal'),

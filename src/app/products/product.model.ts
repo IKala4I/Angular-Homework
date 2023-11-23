@@ -1,20 +1,5 @@
 import {v4} from 'uuid'
-
-export interface ITag {
-  id: number,
-  name: string
-}
-
-export interface IProduct {
-  readonly id: string,
-  name: string,
-  description: string,
-  price: number,
-  tags: ITag[],
-  addTag: (tag: ITag) => void,
-  removeTag: (tagName: string) => void,
-}
-
+import {IProduct, ITag} from './interfaces/interfaces'
 export class Product implements IProduct {
   readonly id: string;
   name: string;
@@ -34,7 +19,7 @@ export class Product implements IProduct {
     this.tags = [...this.tags, tag]
   }
 
-  removeTag(tagName: string) {
-    this.tags = this.tags.filter(tag => tag.name !== tagName)
+  removeTagById(tagId: number) {
+    this.tags = this.tags.filter(tag => tag.id !== tagId)
   }
 }

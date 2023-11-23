@@ -1,25 +1,41 @@
 <button (click)="goBack()">Back</button>
-<form (ngSubmit)="onSubmit()">
+<div>{{ product | json }}</div>
+<form (ngSubmit)="onSubmit()" #productForm='ngForm'>
   <label>Name:
-    <input type="text" [(ngModel)]="product.name" required name="name">
+    <input type="text" [(ngModel)]="product.name" name="name" required #name='ngModel'>
   </label>
-  <label>Description:
+  <div [hidden]="name.valid || (name.pristine && name.untouched)"
+       class="alert alert-danger">
+    Name is required
+  </div>
+  <label>Description (optional):
     <input [(ngModel)]="product.description" type="text" name="description">
   </label>
   <label>Price:
-    <input type="number" name="price" required [(ngModel)]="product.price">
+    <input type="number" name="price" min="1" max="10000" required [(ngModel)]="product.price" #price='ngModel'>
   </label>
-  <label>Tags:
-    <select (change)="addTag($event)">
+  <div [hidden]="price.valid || (price.pristine && price.untouched)"
+       class="alert alert-danger">
+    Price is required and in range 1 to 10000
+  </div>
+  <label>Tags (optional):
+    <select (change)="addTag($event)" #tagSelect>
       @if (tags.length) {
         <option value="-1" disabled selected>Select tag</option>
       } @else {
         <option value="-1" disabled selected>No available tags</option>
       }
       @for (tag of tags;track tag.id) {
-        <option value="{{tag.id}}">{{ tag.name }}</option>
+        <option value="{{tag.name}}">{{ tag.name }}</option>
       }
     </select>
+    @if (selectedTags.length) {
+      <div>Selected Tags:
+        @for (tagName of selectedTags;track tagName) {
+          <p (click)="removeTag(tagName)">x {{ tagName }}</p>
+        }
+      </div>
+    }
   </label>
-  <button type="submit">Create</button>
+  <button type="submit" [disabled]="!productForm.form.valid">Create</button>
 </form>

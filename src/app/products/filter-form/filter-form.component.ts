@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TagsService} from '../services/tags.service'
-import {ITag} from '../product.model'
-import {ICheckbox} from '../interfaces/interfaces'
+import {ICheckbox, ITag} from '../interfaces/interfaces'
 
 @Component({
   selector: 'app-filter-form',

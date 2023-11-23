@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {TagsService} from './tags.service'
-import {IProduct, ITag} from '../product.model'
 import PRODUCTS from '../mock-data/products'
-import {ICheckbox} from '../interfaces/interfaces'
+import {ICheckbox, IProduct, ITag} from '../interfaces/interfaces'
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,8 @@ export class ProductsService {
   constructor(private tagService: TagsService) {
     console.log('Product Service constructor')
     this._products = PRODUCTS
-    this.filteredProducts = this._products.filter(product => product.tags)
-    this.noTagsProducts = this._products.filter(product => !product.tags)
+    this.filteredProducts = this._products.filter(product => product.tags.length)
+    this.noTagsProducts = this._products.filter(product => !product.tags.length)
   }
 
   getAllProducts(): IProduct[] {
@@ -91,5 +90,10 @@ export class ProductsService {
       this.filteredProducts = [...this.filteredProducts, product]
     else
       this.noTagsProducts = [...this.noTagsProducts, product]
+  }
+
+  updateProducts(){
+    this.filteredProducts = this._products.filter(product => product.tags.length)
+    this.noTagsProducts = this._products.filter(product => !product.tags.length)
   }
 }

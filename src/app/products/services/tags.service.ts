@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import TAGS from '../mock-data/tags'
-import {IProduct, ITag} from '../product.model'
-import {ICheckbox} from '../interfaces/interfaces';
+import {ICheckbox, IProduct, ITag} from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +52,10 @@ export class TagsService {
   addTagByNameToProduct(product: IProduct, tagName: string) {
     const tag = this.findTagByName(tagName)
     product.addTag(tag)
+  }
+
+  removeTagByNameFromProduct(product: IProduct, tagName: string) {
+    const tag = this.findTagByName(tagName)
+    product.removeTagById(tag.id)
   }
 }

@@ -1,4 +1,4 @@
-import {ITag} from '../product.model'
+import {ITag} from '../interfaces/interfaces'
 
 const TAGS: ITag[] = [
   {id: 1, name: 'fruit'},

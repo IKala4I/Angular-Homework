@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {RouterLink} from '@angular/router'
-import {IProduct} from '../product.model'
 import {ProductsService} from '../services/products.service'
 import {FilterFormComponent} from '../filter-form/filter-form.component'
-import {ICheckbox} from '../interfaces/interfaces'
+import {ICheckbox, IProduct} from '../interfaces/interfaces'
 import {CreateProductFormComponent} from '../create-product-form/create-product-form.component'
 import {ProductCardComponent} from './product-card/product-card.component'
 
