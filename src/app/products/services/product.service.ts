@@ -1,21 +1,20 @@
 import {Injectable} from '@angular/core';
-import {TagsService} from './tags.service'
+import {TagService} from './tag.service'
 import PRODUCTS from '../mock-data/products'
 import {ICheckbox, IProduct, ITag} from '../interfaces/interfaces'
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class ProductService {
   private _products: IProduct[]
   private filteredProducts: IProduct[]
-  private noTagsProducts: IProduct[]
+  private noTagProducts: IProduct[]
 
-  constructor(private tagService: TagsService) {
-    console.log('Product Service constructor')
+  constructor(private tagService: TagService) {
     this._products = PRODUCTS
     this.filteredProducts = this._products.filter(product => product.tags.length)
-    this.noTagsProducts = this._products.filter(product => !product.tags.length)
+    this.noTagProducts = this._products.filter(product => !product.tags.length)
   }
 
   getAllProducts(): IProduct[] {
@@ -41,8 +40,8 @@ export class ProductsService {
     return this.filteredProducts
   }
 
-  getNoTagsProducts(): IProduct[] {
-    return this.noTagsProducts
+  getNoTagProducts(): IProduct[] {
+    return this.noTagProducts
   }
 
   private filterByTags(products: IProduct[]): IProduct[] {
@@ -64,18 +63,16 @@ export class ProductsService {
     )
   }
 
-  updateSelectedTags(checkboxProps: ICheckbox) {
-    this.tagService.updateSelectedTags(checkboxProps)
-  }
-
-  deleteProduct(productId: string) {
-    const deletedProduct = this._products.find(product => product.id === productId) as IProduct
+  removeProduct(productId: string): IProduct[] {
+    const removedProduct = this._products.find(product => product.id === productId) as IProduct
 
     this._products = this._products.filter(product => product.id !== productId)
-    if (deletedProduct.tags)
+    if (removedProduct.tags)
       this.filteredProducts = this.filteredProducts.filter(product => product.id !== productId)
     else
-      this.noTagsProducts = this.noTagsProducts.filter(product => product.id !== productId)
+      this.noTagProducts = this.noTagProducts.filter(product => product.id !== productId)
+
+    return this._products
   }
 
   findProductById(productId: string | null): IProduct | undefined {
@@ -89,11 +86,11 @@ export class ProductsService {
     if (product.tags.length)
       this.filteredProducts = [...this.filteredProducts, product]
     else
-      this.noTagsProducts = [...this.noTagsProducts, product]
+      this.noTagProducts = [...this.noTagProducts, product]
   }
 
-  updateProducts(){
+  updateProducts() {
     this.filteredProducts = this._products.filter(product => product.tags.length)
-    this.noTagsProducts = this._products.filter(product => !product.tags.length)
+    this.noTagProducts = this._products.filter(product => !product.tags.length)
   }
 }

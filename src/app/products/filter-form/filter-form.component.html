@@ -1,5 +1,5 @@
 <div class="search">
-  <form action="#">
+  <form #filterForm='ngForm'>
     <label>no tags
       <input type="checkbox" name="noTags" value="noTags" (change)="onCheckChange($event)">
     </label>

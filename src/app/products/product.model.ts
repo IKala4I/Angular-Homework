@@ -1,5 +1,6 @@
 import {v4} from 'uuid'
 import {IProduct, ITag} from './interfaces/interfaces'
+
 export class Product implements IProduct {
   readonly id: string;
   name: string;
@@ -15,11 +16,11 @@ export class Product implements IProduct {
     this.tags = tags
   }
 
-  addTag(tag: ITag) {
+  addTag(tag: ITag): void {
     this.tags = [...this.tags, tag]
   }
 
-  removeTagById(tagId: number) {
-    this.tags = this.tags.filter(tag => tag.id !== tagId)
+  removeTagByName(tagName: string): void {
+    this.tags = this.tags.filter(tag => tag.name !== tagName)
   }
 }

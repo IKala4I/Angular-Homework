@@ -1,4 +1,15 @@
-<app-filter-form (tagChecked)="filterProducts($event)" [hidden]="shouldHideFilterForm"></app-filter-form>
+<app-filter-form [hidden]="shouldHideFilterForm" (tagChecked)="filterProducts($event)"></app-filter-form>
+<app-tag-form [tag]="createNewTag()"></app-tag-form>
+
+<!--<button (click)="showEditTagForm()">Edit list of tags</button>-->
+<button (click)="showTagForm()">Create New Tag</button>
+
+<!--<div class="editTagForm" [hidden]="shouldHideEditTagForm">-->
+<!--  @for (tag of tags;track tag.id) {-->
+<!--    <p (click)="removeTag(tag.id)" [appTagBackground]="getTagBackground(tag.name)">x {{ tag.name }}</p>-->
+<!--  }-->
+<!--  <button (click)="showEditTagForm()">Close Edit Form</button>-->
+<!--</div>-->
 
 <a routerLink="/product-list/create-product">Add new product</a>
 
@@ -9,9 +20,11 @@
     <ul>
       @for (product of filteredProducts;track product.id) {
         <li>
-          <app-product-card (productDeleted)="deleteProduct($event)" [product]="product"
+          <app-product-card [product]="product"
+                            [isEditButtonDisabled]="shouldHideFilterForm"
+                            (productRemoved)="deleteProduct($event)"
                             (editModeToggled)="toggleEditMode()"
-                            [isEditButtonDisabled]="shouldHideFilterForm"></app-product-card>
+          ></app-product-card>
         </li>
       }
     </ul>

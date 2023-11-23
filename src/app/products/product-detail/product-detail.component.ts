@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule, Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router'
-import {ProductsService} from '../services/products.service'
+import {ProductService} from '../services/product.service'
 import {IProduct} from '../interfaces/interfaces'
 
 @Component({
@@ -14,8 +14,7 @@ import {IProduct} from '../interfaces/interfaces'
 export class ProductDetailComponent implements OnInit {
   product?: IProduct;
 
-  constructor(private location: Location, private activatedRoute: ActivatedRoute, private productService: ProductsService) {
-    console.log('Product Detail Component constructor')
+  constructor(private location: Location, private activatedRoute: ActivatedRoute, private productService: ProductService) {
   }
 
   ngOnInit(): void {

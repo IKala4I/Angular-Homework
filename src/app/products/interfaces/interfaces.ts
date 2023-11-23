@@ -4,8 +4,9 @@ export interface ICheckbox {
 }
 
 export interface ITag {
-  id: number,
-  name: string
+  readonly id: number,
+  name: string,
+  backgroundColor: string
 }
 
 export interface IProduct {
@@ -15,5 +16,5 @@ export interface IProduct {
   price: number,
   tags: ITag[],
   addTag: (tag: ITag) => void,
-  removeTagById: (tagId: number) => void,
+  removeTagByName: (tagName: string) => void
 }
