@@ -10,7 +10,7 @@ import {ProductDetailComponent} from '../../partial/product-detail/product-detai
   styleUrl: './product-detail-page.component.scss'
 })
 export class ProductDetailPageComponent {
-  constructor(private location: Location,) {
+  constructor(private location: Location) {
   }
 
   goBack() {

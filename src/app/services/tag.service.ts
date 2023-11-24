@@ -7,7 +7,7 @@ import {BehaviorSubject, Observable} from 'rxjs'
   providedIn: 'root'
 })
 export class TagService {
-  private tags$: BehaviorSubject<ITag[]> = new BehaviorSubject<ITag[]>([])
+  private tags$: BehaviorSubject<ITag[]> = new BehaviorSubject<ITag[]>(TAGS)
   private selectedTags$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([])
   private isNoTagSelected$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
@@ -19,9 +19,7 @@ export class TagService {
     return this.isNoTagSelected$.getValue()
   }
 
-  constructor() {
-    this.tags$.next(TAGS)
-  }
+  constructor() {}
 
   getAllTagsAsObservable(): Observable<ITag[]> {
     return this.tags$

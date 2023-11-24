@@ -8,11 +8,10 @@ import {BehaviorSubject, Observable} from 'rxjs'
   providedIn: 'root'
 })
 export class ProductService {
-  private products$: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>([])
+  private products$: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>(PRODUCTS)
   private filteredProducts$: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>([])
 
   constructor(private tagService: TagService) {
-    this.products$.next(PRODUCTS)
     this.updateProducts(this.products$.getValue())
 
     this.products$.subscribe(products => {

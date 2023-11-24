@@ -16,7 +16,6 @@ export class TagBackgroundDirective implements OnInit{
     }
 
   private highlight(color: string): void {
-    console.log(color)
     this.el.nativeElement.style.backgroundColor = color
   }
 }
