@@ -1,16 +1,13 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {CommonModule, Location} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {IProduct, ITag} from '../../../interfaces/interfaces'
-import {ProductService} from '../../../services/product.service'
 import {TagService} from '../../../services/tag.service'
-import {Product} from '../../../models/product.model'
 import {FormsModule} from '@angular/forms'
-import {TagBackgroundDirective} from '../../../directives/tag-background.directive'
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, TagBackgroundDirective],
+  imports: [CommonModule, FormsModule],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss'
 })

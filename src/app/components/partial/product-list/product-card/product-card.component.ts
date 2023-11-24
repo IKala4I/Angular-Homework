@@ -1,16 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router'
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms'
 import {TagService} from '../../../../services/tag.service'
 import {IProduct, ITag} from '../../../../interfaces/interfaces'
-import {TagBackgroundDirective} from '../../../../directives/tag-background.directive'
 import {ProductFormComponent} from '../../product-form/product-form.component'
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TagBackgroundDirective, ProductFormComponent],
+  imports: [CommonModule, FormsModule, ProductFormComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })

@@ -76,8 +76,4 @@ export class TagService {
   getIfTagSelected(tagName: string): boolean {
     return this.selectedTags.includes(tagName)
   }
-
-  // updateTags(tags: ITag[]): void {
-  //   this.tags$.next([...tags])
-  // }
 }

@@ -7,7 +7,7 @@
     @if (product.tags) {
       <div class="tags">
         @for (tag of product.tags;track tag.id) {
-          <p [appTagBackground]="getTagBackground(tag.name)" class="tag">{{ tag.name }}</p>
+          <p [style.background-color]="getTagBackground(tag.name)" class="tag">{{ tag.name }}</p>
         }
       </div>
     }

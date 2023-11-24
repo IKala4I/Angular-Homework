@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TagBackgroundDirective} from '../../../../directives/tag-background.directive'
 import {ITag} from '../../../../interfaces/interfaces'
 import {TagService} from '../../../../services/tag.service'
 import {TagFormComponent} from '../../tag-form/tag-form.component'
@@ -8,7 +7,7 @@ import {TagFormComponent} from '../../tag-form/tag-form.component'
 @Component({
   selector: 'app-tag',
   standalone: true,
-  imports: [CommonModule, TagBackgroundDirective, TagFormComponent],
+  imports: [CommonModule, TagFormComponent],
   templateUrl: './tag.component.html',
   styleUrl: './tag.component.scss'
 })

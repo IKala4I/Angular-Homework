@@ -28,7 +28,7 @@
     @if (selectedTags.length) {
       <div>Selected Tags:
         @for (tagName of selectedTags;track tagName) {
-          <p [appTagBackground]="getTagBackground(tagName)" (click)="removeTag(tagName)">x {{ tagName }}</p>
+          <p [style.background-color]="getTagBackground(tagName)" (click)="removeTag(tagName)">x {{ tagName }}</p>
         }
       </div>
     }
