@@ -1,0 +1,17 @@
+<div class="list">
+  @if (products.length) {
+    <ul>
+      @for (product of products;track product.id) {
+        <li>
+          <app-product-card [product]="product"
+                            [isEditButtonDisabled]="isProductInEditMode"
+                            (productRemoved)="removeProduct($event)"
+                            (editModeToggled)="toggleEditMode()"
+          ></app-product-card>
+        </li>
+      }
+    </ul>
+  } @else {
+    <div>Nothing found</div>
+  }
+</div>

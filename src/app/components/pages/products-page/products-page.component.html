@@ -1,0 +1,15 @@
+<app-filter-form [hidden]="shouldHideFilterForm" (tagChecked)="filterProducts($event)"></app-filter-form>
+
+<app-tag-form [hidden]="shouldHideTagForm" [tag]="newTag" [submitAction]="onAddTag.bind(this)"
+              (closedForm)="showTagForm()"></app-tag-form>
+
+<app-tag-list [hidden]="shouldHideTagList"></app-tag-list>
+
+<button (click)="showEditTagForm()">Show list of tags</button>
+<button (click)="showTagForm()">Create New Tag</button>
+
+<a routerLink="/product-list/create-product">Add new product</a>
+
+<app-product-list [products]="filteredProducts" (productRemoved)="removeProduct($event)"
+                  [(isProductInEditMode)]="shouldHideFilterForm"
+                  [hidden]="!shouldHideTagList || !shouldHideTagForm"></app-product-list>

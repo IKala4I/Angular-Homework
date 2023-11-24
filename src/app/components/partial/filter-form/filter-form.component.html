@@ -1,0 +1,14 @@
+<div class="search">
+  <form>
+    <label>no tags
+      <input type="checkbox" name="noTags" value="noTags" (change)="onCheckChange($event)" [checked]="isNoTags">
+    </label>
+    @for (tag of tags;track tag.id) {
+      <label>{{ tag.name }}
+        <input type="checkbox" [name]="tag.name" [value]="tag.name" (change)="onCheckChange($event)"
+               [disabled]="isNoTags" [checked]="isSelected(tag.name)">
+      </label>
+    }
+  </form>
+  <button type="button" (click)="resetFilterForm()" [disabled]="!isAnySelected()">Reset filters</button>
+</div>
