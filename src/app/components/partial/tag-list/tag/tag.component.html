@@ -1,5 +1,5 @@
 @if (isEditMode) {
-  <app-tag-form [tag]="tag" (closedForm)="toggleEditForm()" [submitAction]="onSaveChanges.bind(this)"></app-tag-form>
+  <app-tag-form [tag]="tag" (closedForm)="onClosedForm()" [submitAction]="onSaveChanges.bind(this)"></app-tag-form>
 } @else {
   <p [appTagBackground]="getTagBackground(tag.name)">{{ tag.name }}</p>
   <button (click)="toggleEditForm()">Edit Tag</button>

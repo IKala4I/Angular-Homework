@@ -4,7 +4,7 @@ import {Directive, ElementRef, Input, OnInit} from '@angular/core';
   selector: '[appTagBackground]',
   standalone: true
 })
-export class TagBackgroundDirective implements OnInit{
+export class TagBackgroundDirective implements OnInit {
 
   @Input() appTagBackground!: string
 
@@ -13,7 +13,7 @@ export class TagBackgroundDirective implements OnInit{
 
   ngOnInit(): void {
     this.highlight(this.appTagBackground)
-    }
+  }
 
   private highlight(color: string): void {
     this.el.nativeElement.style.backgroundColor = color

@@ -11,6 +11,6 @@
   <div [hidden]="color.valid || (color.pristine && color.untouched)">
     Color is required
   </div>
-  <button type="submit" [disabled]="!tagForm.form.valid">Create</button>
+  <button type="submit" [disabled]="!tagForm.form.valid">Submit</button>
   <button type="button" (click)="closeForm()">Close form</button>
 </form>

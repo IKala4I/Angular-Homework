@@ -35,8 +35,4 @@ export class TagListComponent implements OnInit {
     this.isEditButtonDisabled = !this.isEditButtonDisabled
   }
 
-  // updateTags(): void {
-  //   this.tagService.updateTags(this.tagService.getAllTags())
-  //   this.productService.updateFilteredProducts()
-  // }
 }

@@ -4,7 +4,6 @@ import {TagBackgroundDirective} from '../../../../directives/tag-background.dire
 import {ITag} from '../../../../interfaces/interfaces'
 import {TagService} from '../../../../services/tag.service'
 import {TagFormComponent} from '../../tag-form/tag-form.component'
-import {ProductService} from '../../../../services/product.service'
 
 @Component({
   selector: 'app-tag',
@@ -14,20 +13,20 @@ import {ProductService} from '../../../../services/product.service'
   styleUrl: './tag.component.scss'
 })
 export class TagComponent implements OnInit {
-  @Input() tag!: ITag
-
+  private prevTag!: ITag
   isEditMode!: boolean
 
+  @Input() tag!: ITag
   @Input() isEditButtonDisabled!: boolean
   @Output() tagRemoved: EventEmitter<number> = new EventEmitter<number>()
   @Output() editModeToggled: EventEmitter<boolean> = new EventEmitter<boolean>()
-  // @Output() changesSaved: EventEmitter<unknown> = new EventEmitter<unknown>()
 
-  constructor(private tagService: TagService, private productService: ProductService) {
+  constructor(private tagService: TagService) {
   }
 
   ngOnInit(): void {
     this.isEditMode = false
+    this.prevTag = Object.assign({}, this.tag)
   }
 
   toggleEditForm(): void {
@@ -38,7 +37,6 @@ export class TagComponent implements OnInit {
   onSaveChanges() {
     this.isEditMode = false
     this.editModeToggled.emit(this.isEditMode)
-    // this.changesSaved.emit()
   }
 
   removeTag(tagId: number): void {
@@ -47,5 +45,11 @@ export class TagComponent implements OnInit {
 
   getTagBackground(tagName: string): string {
     return this.tagService.findTagByName(tagName).backgroundColor
+  }
+
+  onClosedForm(): void {
+    this.tag.name = this.prevTag.name
+    this.tag.backgroundColor = this.prevTag.backgroundColor
+    this.toggleEditForm()
   }
 }
