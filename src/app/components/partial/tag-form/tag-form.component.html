@@ -1,6 +1,6 @@
 <form (ngSubmit)="onSubmit()" #tagForm='ngForm'>
   <label>Name:
-    <input type="text" [(ngModel)]="tag.name" name="name" required #name='ngModel'>
+    <input type="text" [(ngModel)]="tag.name" name="name" required #name='ngModel' [appTagNameValidator]="tag.name">
   </label>
   <div [hidden]="name.valid || (name.pristine && name.untouched)">
     Name is required
