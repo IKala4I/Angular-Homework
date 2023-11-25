@@ -13,7 +13,7 @@ export class ProductDetailPageComponent {
   constructor(private location: Location) {
   }
 
-  goBack() {
+  goBack(): void {
     this.location.back()
   }
 }

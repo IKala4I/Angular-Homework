@@ -6,8 +6,8 @@
           <app-product-card [product]="product"
                             [isEditButtonDisabled]="isProductInEditMode"
                             (productRemoved)="removeProduct($event)"
-                            (editModeToggled)="toggleEditMode()"
-          ></app-product-card>
+                            (editModeToggled)="toggleEditMode()">
+          </app-product-card>
         </li>
       }
     </ul>

@@ -14,6 +14,7 @@ import {ProductService} from '../../../services/product.service'
 export class ProductListComponent {
   @Input() products!: IProduct[]
   @Input() isProductInEditMode!: boolean
+
   @Output() isProductInEditModeChange: EventEmitter<boolean> = new EventEmitter<boolean>()
   @Output() productRemoved: EventEmitter<string> = new EventEmitter<string>()
 

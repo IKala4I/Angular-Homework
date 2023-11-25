@@ -11,8 +11,8 @@
         }
       </div>
     }
-    <button (click)="showDetail(product.id)">show details</button>
-    <button (click)="removeProduct(product.id)">Delete {{ product.name }}</button>
+    <button (click)="showDetail(product.id)" [disabled]="isEditButtonDisabled">Show details</button>
+    <button (click)="removeProduct(product.id)" [disabled]="isEditButtonDisabled">Delete {{ product.name }}</button>
     <button (click)="toggleEditForm()" [disabled]="isEditButtonDisabled">Edit {{ product.name }}</button>
   }
 </div>

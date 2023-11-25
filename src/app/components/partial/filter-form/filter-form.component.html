@@ -5,10 +5,11 @@
     </label>
     @for (tag of tags;track tag.id) {
       <label>{{ tag.name }}
-        <input type="checkbox" [name]="tag.name" [value]="tag.name" (change)="onCheckChange($event)"
-               [disabled]="isNoTags" [checked]="isSelected(tag.name)">
+        <input type="checkbox" [name]="tag.name" [value]="tag.name"
+               [disabled]="isNoTags" [checked]="isSelected(tag.name)"
+               (change)="onCheckChange($event)">
       </label>
     }
   </form>
-  <button type="button" (click)="resetFilterForm()" [disabled]="!isAnySelected()">Reset filters</button>
+  <button type="button" [disabled]="!isAnySelected()" (click)="resetFilterForm()">Reset filters</button>
 </div>

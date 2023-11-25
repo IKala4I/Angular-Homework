@@ -19,6 +19,7 @@ export class ProductCardComponent implements OnInit {
 
   @Input() product!: IProduct
   @Input() isEditButtonDisabled!: boolean
+
   @Output() productRemoved: EventEmitter<string> = new EventEmitter<string>()
   @Output() editModeToggled: EventEmitter<boolean> = new EventEmitter<boolean>()
 

@@ -9,6 +9,8 @@ import {Tag} from '../../../models/tag.model'
 import {ICheckbox, IProduct, ITag} from '../../../interfaces/interfaces'
 import {ProductService} from '../../../services/product.service'
 import {TagService} from '../../../services/tag.service'
+import {takeUntil} from 'rxjs'
+import {Destroyer} from '../../../utils/destroyer'
 
 @Component({
   selector: 'app-products-page',
@@ -17,20 +19,25 @@ import {TagService} from '../../../services/tag.service'
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.scss'
 })
-export class ProductsPageComponent implements OnInit {
+export class ProductsPageComponent extends Destroyer implements OnInit {
   newTag!: ITag
+
   filteredProducts!: IProduct[]
+
   shouldHideFilterForm!: boolean
   shouldHideTagForm!: boolean
   shouldHideTagList!: boolean
 
   constructor(private productService: ProductService, private tagService: TagService) {
+    super()
   }
 
   ngOnInit(): void {
-    this.productService.getFilteredProducts().subscribe(filteredProducts => {
-      this.filteredProducts = filteredProducts
-    })
+    this.productService.getFilteredProductsAsObservable()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(filteredProducts => {
+        this.filteredProducts = filteredProducts
+      })
 
     this.newTag = new Tag(this.tagService.generateTagId(), '', '#F2D2BD')
 
@@ -56,7 +63,7 @@ export class ProductsPageComponent implements OnInit {
     this.shouldHideTagList = !this.shouldHideTagList
   }
 
-  onAddTag() {
+  onAddTag(): void {
     this.tagService.addTag(this.newTag)
     this.shouldHideTagForm = !this.shouldHideTagForm
   }

@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms'
 export class TagFormComponent {
   @Input() tag!: ITag
   @Input() submitAction!: () => void
+
   @Output() closedForm: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   constructor() {

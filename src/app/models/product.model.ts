@@ -2,10 +2,10 @@ import {v4} from 'uuid'
 import {IProduct, ITag} from '../interfaces/interfaces'
 
 export class Product implements IProduct {
-  readonly id: string;
-  name: string;
-  description: string;
-  price: number;
+  readonly id: string
+  name: string
+  description: string
+  price: number
   tags: ITag[]
 
   constructor(name: string, price: number, tags: ITag[], description: string) {

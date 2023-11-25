@@ -26,7 +26,7 @@ export class CreateProductPageComponent implements OnInit {
     this.location.back()
   }
 
-  onAddProduct() {
+  onAddProduct(): void {
     this.productService.addProduct(this.product)
     this.location.back()
   }

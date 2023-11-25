@@ -13,10 +13,12 @@ import {TagFormComponent} from '../../tag-form/tag-form.component'
 })
 export class TagComponent implements OnInit {
   private prevTag!: ITag
+
   isEditMode!: boolean
 
   @Input() tag!: ITag
   @Input() isEditButtonDisabled!: boolean
+
   @Output() tagRemoved: EventEmitter<number> = new EventEmitter<number>()
   @Output() editModeToggled: EventEmitter<boolean> = new EventEmitter<boolean>()
 
@@ -33,7 +35,7 @@ export class TagComponent implements OnInit {
     this.editModeToggled.emit(this.isEditMode)
   }
 
-  onSaveChanges() {
+  onSaveChanges(): void {
     this.isEditMode = false
     this.editModeToggled.emit(this.isEditMode)
   }

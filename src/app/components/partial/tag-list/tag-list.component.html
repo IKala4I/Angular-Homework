@@ -1,7 +1,11 @@
 @if (tags.length) {
   <h4>Tags</h4>
   @for (tag of tags;track tag.id) {
-    <app-tag [tag]="tag" [isEditButtonDisabled]="isEditButtonDisabled" (tagRemoved)="removeTag($event)"
-             (editModeToggled)="toggleStateEditButton()"></app-tag>
+    <app-tag
+      [tag]="tag"
+      [isEditButtonDisabled]="isEditButtonDisabled"
+      (tagRemoved)="removeTag($event)"
+      (editModeToggled)="toggleStateEditButton()">
+    </app-tag>
   }
 }

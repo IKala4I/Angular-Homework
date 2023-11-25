@@ -1,15 +1,47 @@
-<app-filter-form [hidden]="shouldHideFilterForm || !shouldHideTagList || !shouldHideTagForm" (tagChecked)="filterProducts($event)"></app-filter-form>
+<app-filter-form
+  [hidden]="shouldHideFilterForm ||
+  !shouldHideTagList ||
+  !shouldHideTagForm"
+  (tagChecked)="filterProducts($event)">
+</app-filter-form>
 
-<app-tag-form [hidden]="shouldHideTagForm" [tag]="newTag" [submitAction]="onAddTag.bind(this)"
-              (closedForm)="showTagForm()"></app-tag-form>
+<app-tag-form
+  [hidden]="shouldHideTagForm"
+  [tag]="newTag"
+  [submitAction]="onAddTag.bind(this)"
+  (closedForm)="showTagForm()">
+</app-tag-form>
 
-<app-tag-list [hidden]="shouldHideTagList || !shouldHideTagForm"></app-tag-list>
+<app-tag-list
+  [hidden]="shouldHideTagList ||
+  !shouldHideTagForm">
+</app-tag-list>
 
-<button (click)="showEditTagForm()" [hidden]="!shouldHideTagForm || shouldHideFilterForm">{{shouldHideTagList ? 'Show list of tags' : 'Hide list of tags'}}</button>
-<button (click)="showTagForm()" [hidden]="!shouldHideTagForm || shouldHideFilterForm">Create New Tag</button>
+<button
+  [hidden]="!shouldHideTagForm ||
+  shouldHideFilterForm"
+  (click)="showEditTagForm()">
+  {{ shouldHideTagList ? 'Show tag list' : 'Hide tag list' }}
+</button>
 
-<a routerLink="/product-list/create-product" [hidden]="!shouldHideTagForm || !shouldHideTagList || shouldHideFilterForm">Add new product</a>
+<button
+  [hidden]="!shouldHideTagForm ||
+  shouldHideFilterForm"
+  (click)="showTagForm()">
+  Create new tag
+</button>
 
-<app-product-list [products]="filteredProducts" (productRemoved)="removeProduct($event)"
-                  [(isProductInEditMode)]="shouldHideFilterForm"
-                  [hidden]="!shouldHideTagList || !shouldHideTagForm"></app-product-list>
+<a routerLink="/product-list/create-product"
+   [hidden]="!shouldHideTagForm ||
+   !shouldHideTagList ||
+   shouldHideFilterForm">
+  Create new product
+</a>
+
+<app-product-list
+  [products]="filteredProducts"
+  [hidden]="!shouldHideTagList ||
+  !shouldHideTagForm"
+  (productRemoved)="removeProduct($event)"
+  [(isProductInEditMode)]="shouldHideFilterForm">
+</app-product-list>

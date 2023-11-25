@@ -32,7 +32,7 @@ export class ProductFormComponent implements OnInit {
       this.selectedTags = []
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitAction()
   }
 

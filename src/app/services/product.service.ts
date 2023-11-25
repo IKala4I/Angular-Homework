@@ -19,6 +19,14 @@ export class ProductService {
     })
   }
 
+  private updateProducts(products: IProduct[]): void {
+    if (this.tagService.isNoTagSelected)
+      this.filteredProducts$.next(this.products$.getValue().filter(product => !product.tags.length))
+    else if (this.tagService.selectedTags.length)
+      this.filteredProducts$.next(this.filterByTags(this.products$.getValue()))
+    else
+      this.filteredProducts$.next([...products])
+  }
   filterProductsByTag(checkboxProps: ICheckbox): void {
     const allProducts = this.products$.getValue()
 
@@ -34,14 +42,6 @@ export class ProductService {
         this.filteredProducts$.next(allProducts)
       }
     }
-  }
-
-  resetFilteredProducts(): void {
-    this.filteredProducts$.next(this.products$.getValue())
-  }
-
-  getFilteredProducts(): Observable<IProduct[]> {
-    return this.filteredProducts$
   }
 
   private filterByTags(products: IProduct[]): IProduct[] {
@@ -62,6 +62,13 @@ export class ProductService {
       }
     )
   }
+  resetFilteredProducts(): void {
+    this.filteredProducts$.next(this.products$.getValue())
+  }
+
+  getFilteredProductsAsObservable(): Observable<IProduct[]> {
+    return this.filteredProducts$
+  }
 
   removeProduct(productId: string): void {
     const allProducts = this.products$.getValue().filter(product => product.id !== productId)
@@ -79,15 +86,6 @@ export class ProductService {
   addProduct(product: IProduct): void {
     const allProducts = this.products$.getValue()
     this.products$.next([...allProducts, product])
-  }
-
-  private updateProducts(products: IProduct[]): void {
-    if (this.tagService.isNoTagSelected)
-      this.filteredProducts$.next(this.products$.getValue().filter(product => !product.tags.length))
-    else if (this.tagService.selectedTags.length)
-      this.filteredProducts$.next(this.filterByTags(this.products$.getValue()))
-    else
-      this.filteredProducts$.next([...products])
   }
 
   removeTagFromProductsById(tagId: number): void {

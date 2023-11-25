@@ -53,12 +53,12 @@ export class TagService {
     return this.tags$.getValue().find(tag => tag.name === tagName) as ITag
   }
 
-  private findTagById(tagId: number): ITag {
-    return this.tags$.getValue().find(tag => tag.id === tagId) as ITag
-  }
-
   generateTagId(): number {
     return this.tags$.getValue().length + 1
+  }
+
+  getIfTagSelected(tagName: string): boolean {
+    return this.selectedTags.includes(tagName)
   }
 
   addTag(tag: ITag): void {
@@ -73,7 +73,7 @@ export class TagService {
     this.tags$.next(this.tags$.getValue().filter(tag => tag.id !== tagId))
   }
 
-  getIfTagSelected(tagName: string): boolean {
-    return this.selectedTags.includes(tagName)
+  private findTagById(tagId: number): ITag {
+    return this.tags$.getValue().find(tag => tag.id === tagId) as ITag
   }
 }
