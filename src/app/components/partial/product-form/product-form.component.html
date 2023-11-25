@@ -1,19 +1,42 @@
 <form (ngSubmit)="onSubmit()" #productForm='ngForm'>
   <label>Name:
-    <input type="text" [(ngModel)]="product.name" name="name" required #name='ngModel'>
+    <input type="text" [(ngModel)]="product.name" name="name" minlength="2" maxlength="20" required #name='ngModel'>
   </label>
-  <div [hidden]="name.valid || (name.pristine && name.untouched)">
-    Name is required
-  </div>
+  @if (name.dirty || name.touched) {
+    <div>
+      Maximum length is 20 characters
+    </div>
+  }
+  @if (name.invalid && (name.dirty || name.touched)) {
+    <div>
+      @if (name.errors?.['required']) {
+        <div>
+          Name is required
+        </div>
+      }
+      @if (name.errors?.['minlength']) {
+        <div>
+          Name must contain at least 2 characters and no more than 20 characters
+        </div>
+      }
+    </div>
+  }
   <label>Description (optional):
-    <input [(ngModel)]="product.description" type="text" name="description">
+    <input [(ngModel)]="product.description" maxlength="100" type="text" name="description" #description='ngModel'>
   </label>
+  @if (description.dirty || description.touched) {
+    <div>
+      Maximum length is 100 characters
+    </div>
+  }
   <label>Price:
-    <input type="number" name="price" min="1" max="10000" required [(ngModel)]="product.price" #price='ngModel'>
+    <input type="number" name="price" min="1" max="10000" [(ngModel)]="product.price" #price='ngModel'>
   </label>
-  <div [hidden]="price.valid || (price.pristine && price.untouched)">
-    Price is required and in range 1 to 10000
-  </div>
+  @if (price.invalid && (price.dirty || price.touched)) {
+    <div>
+      Price should be from 1 to 10,000
+    </div>
+  }
   <label>Tags (optional):
     <select (change)="addTag($event)" #tagSelect>
       @if (tags.length) {

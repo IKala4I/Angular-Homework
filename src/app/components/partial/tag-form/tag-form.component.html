@@ -1,16 +1,30 @@
 <form (ngSubmit)="onSubmit()" #tagForm='ngForm'>
   <label>Name:
-    <input type="text" [(ngModel)]="tag.name" name="name" required #name='ngModel' [appTagNameValidator]="tag.name">
+    <input type="text" [(ngModel)]="tag.name" name="name" required minlength="2" maxlength="10" #name='ngModel'
+           [appTagNameValidator]="tag.name">
   </label>
-  <div [hidden]="name.valid || (name.pristine && name.untouched)">
-    Name is required
-  </div>
+  @if (name.invalid && (name.dirty || name.touched)) {
+    <div>
+      @if (name.errors?.['required']) {
+        <div>
+          Name is required
+        </div>
+      }
+      @if (name.errors?.['minlength']) {
+        <div>
+          Name must contain at least 2 characters and no more than 10 characters
+        </div>
+      }
+      @if (name.errors?.['tagNameExists']) {
+        <div>
+          A tag with that name already exists
+        </div>
+      }
+    </div>
+  }
   <label>Background Color
-    <input type="color" [(ngModel)]="tag.backgroundColor" name="color" required #color='ngModel'>
+    <input type="color" [(ngModel)]="tag.backgroundColor" name="color" required>
   </label>
-  <div [hidden]="color.valid || (color.pristine && color.untouched)">
-    Color is required
-  </div>
   <button type="submit" [disabled]="!tagForm.form.valid">Submit</button>
   <button type="button" (click)="closeForm()">Close form</button>
 </form>

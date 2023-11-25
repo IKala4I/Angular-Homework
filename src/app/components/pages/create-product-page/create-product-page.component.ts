@@ -19,7 +19,7 @@ export class CreateProductPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.product = new Product('', 0, [], '')
+    this.product = new Product('', 1, [], '')
   }
 
   goBack(): void {
