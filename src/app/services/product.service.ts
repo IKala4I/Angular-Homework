@@ -36,10 +36,6 @@ export class ProductService {
     }
   }
 
-  updateFilteredProducts(): void {
-    this.updateProducts(this.filteredProducts$.getValue())
-  }
-
   resetFilteredProducts(): void {
     this.filteredProducts$.next(this.products$.getValue())
   }

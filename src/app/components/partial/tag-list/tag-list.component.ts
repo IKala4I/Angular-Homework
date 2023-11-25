@@ -34,5 +34,4 @@ export class TagListComponent implements OnInit {
   toggleStateEditButton(): void {
     this.isEditButtonDisabled = !this.isEditButtonDisabled
   }
-
 }

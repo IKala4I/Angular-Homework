@@ -17,8 +17,7 @@ export class ProductListComponent {
   @Output() isProductInEditModeChange: EventEmitter<boolean> = new EventEmitter<boolean>()
   @Output() productRemoved: EventEmitter<string> = new EventEmitter<string>()
 
-  constructor(private productService: ProductService) {
-  }
+  constructor() {}
 
   removeProduct(productId: string): void {
     this.productRemoved.emit(productId)
@@ -26,7 +25,6 @@ export class ProductListComponent {
 
   toggleEditMode(): void {
     const state = !this.isProductInEditMode
-    this.productService.updateFilteredProducts()
     this.isProductInEditModeChange.emit(state)
   }
 }
