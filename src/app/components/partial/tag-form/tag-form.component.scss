@@ -1,0 +1,13 @@
+.color{
+  height: 3rem;
+}
+
+button:first-of-type{
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 400px){
+  button{
+    width:80%;
+  }
+}
