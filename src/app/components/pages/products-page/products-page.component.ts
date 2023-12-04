@@ -39,7 +39,7 @@ export class ProductsPageComponent extends Destroyer implements OnInit {
         this.filteredProducts = filteredProducts
       })
 
-    this.newTag = new Tag(this.tagService.generateTagId(), '', '#F2D2BD')
+    this.newTag = new Tag(this.tagService.generateTagId(), '', '#557A95')
 
     this.shouldHideFilterForm = false
     this.shouldHideTagForm = true

@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-html{
+html {
   height: 100%;
 }
 
@@ -17,17 +17,22 @@ body {
 
 .formButton {
   padding: 0.75rem 1rem;
-  font-size: 1.2vw;
+  font-size: max(14px, 1.2vw);
   background-color: #B1A296;
   color: white;
   letter-spacing: 1px;
   font-weight: 500;
-  border:none;
+  border: none;
   border-radius: 15px;
   transition: background-color 0.5s;
+  margin-top: 0.5rem;
 }
 
-.formButton:hover{
+.formButton:hover {
   background-color: #918578;
   cursor: pointer;
+}
+
+.formButton:disabled {
+  color: gray;
 }

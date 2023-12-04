@@ -2,20 +2,24 @@ form {
   background-color: #938E94;
   padding: 0.75rem 1rem;
   margin: 0 auto;
-  width: 70%;
-  font-size: 1.2vw;
+  width: 60%;
+  font-size: max(14px, 1.2vw);
+  color: gainsboro;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 
   label {
     display: block;
+    padding: 0.5rem;
+    position: relative;
 
     input, select {
       display: block;
       padding: 0.5rem;
       border-radius: 15px;
-      width: 50%;
+      width: max(150px, 70%);
       border: none;
-      font-size: 1vw;
-      margin: 0.5rem 0;
+      font-size: max(12px, 1vw);
+      margin-top: 0.5rem;
     }
   }
 
@@ -29,5 +33,72 @@ form {
     content: '*';
     color: red;
     margin-right: 2px;
+  }
+
+  .hint {
+    display: block;
+    position: relative;
+    padding: max(5px, 1%) 0.5rem;
+    top: -10px;
+    font-size: max(10px, 1vw);
+  }
+
+  .hint.disabled {
+    display: none;
+  }
+
+  .error {
+    border: 1px solid #f5a2a2;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    color: #f5a2a2;
+    font-weight: bold;
+    width: max(150px, 70%);
+    border-radius: 15px;
+    margin-left: 7.2px;
+  }
+
+  h4 {
+    margin: 0.5rem 0;
+  }
+
+  .tags {
+    margin: 0.5rem 0;
+    display: flex;
+    column-gap: 0.75rem;
+    flex-wrap: wrap;
+    width: max(150px, 70%);
+
+    .tag {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 20px;
+      flex: 1 1 auto;
+      cursor: pointer;
+      position: relative;
+
+      .tiptext {
+        visibility: hidden;
+        width: fit-content;
+        bottom: 110%;
+        left: 15%;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        opacity: 0.75;
+      }
+    }
+
+    .tag::before {
+      content: '#';
+      margin-right: 3px;
+    }
+
+    .tag:hover .tiptext {
+      visibility: visible;
+    }
   }
 }
