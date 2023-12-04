@@ -1,27 +1,68 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$Angular-Homework-primary: mat.define-palette(mat.$indigo-palette);
+$Angular-Homework-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$Angular-Homework-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$Angular-Homework-theme: mat.define-light-theme((
+  color: (
+    primary: $Angular-Homework-primary,
+    accent: $Angular-Homework-accent,
+    warn: $Angular-Homework-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($Angular-Homework-theme);
+
 @import 'app/styles/reset';
 
 *, *::after, *::before {
   box-sizing: border-box;
 }
 
+html{
+  height: 100%;
+}
+
 body {
   max-width: 1440px;
   margin: 0 auto;
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.formButton {
-  padding: 0.75rem 1rem;
-  font-size: 1.2vw;
-  background-color: #B1A296;
-  color: white;
-  letter-spacing: 1px;
-  font-weight: 500;
-  border:none;
-  border-radius: 15px;
-  transition: background-color 0.5s;
-}
-
-.formButton:hover{
-  background-color: #918578;
-  cursor: pointer;
-}
+//.formButton {
+//  padding: 0.75rem 1rem;
+//  font-size: 1.2vw;
+//  background-color: #B1A296;
+//  color: white;
+//  letter-spacing: 1px;
+//  font-weight: 500;
+//  border:none;
+//  border-radius: 15px;
+//  transition: background-color 0.5s;
+//}
+//
+//.formButton:hover{
+//  background-color: #918578;
+//  cursor: pointer;
+//}
