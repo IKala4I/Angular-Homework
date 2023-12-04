@@ -4,29 +4,30 @@ form {
   margin: 0 auto;
   width: 70%;
   font-size: 1.2vw;
-  //label {
-  //  display: block;
-  //
-  //  input, select {
-  //    display: block;
-  //    padding: 0.5rem;
-  //    border-radius: 15px;
-  //    width: 50%;
-  //    border: none;
-  //    font-size: 1vw;
-  //    margin: 0.5rem 0;
-  //  }
-  //}
-  //
-  //label:first-of-type::before {
-  //  content: '*';
-  //  color: red;
-  //  margin-right: 2px;
-  //}
-  //
-  //label:nth-of-type(3)::before {
-  //  content: '*';
-  //  color: red;
-  //  margin-right: 2px;
-  //}
+
+  label {
+    display: block;
+
+    input, select {
+      display: block;
+      padding: 0.5rem;
+      border-radius: 15px;
+      width: 50%;
+      border: none;
+      font-size: 1vw;
+      margin: 0.5rem 0;
+    }
+  }
+
+  label:first-of-type::before {
+    content: '*';
+    color: red;
+    margin-right: 2px;
+  }
+
+  label:nth-of-type(3)::before {
+    content: '*';
+    color: red;
+    margin-right: 2px;
+  }
 }
