@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router'
 import {FormsModule} from '@angular/forms'
@@ -22,6 +22,9 @@ export class ProductCardComponent implements OnInit {
 
   @Output() productRemoved: EventEmitter<string> = new EventEmitter<string>()
   @Output() editModeToggled: EventEmitter<boolean> = new EventEmitter<boolean>()
+  @Output() productInEditMode: EventEmitter<HTMLElement> = new EventEmitter<HTMLElement>()
+
+  @ViewChild('productCard') productCard!: ElementRef
 
   constructor(private router: Router, private tagService: TagService) {
   }
@@ -37,6 +40,9 @@ export class ProductCardComponent implements OnInit {
   toggleEditForm(): void {
     this.isEditMode = !this.isEditMode
     this.editModeToggled.emit(this.isEditMode)
+
+    if (this.isEditMode)
+      this.productInEditMode.emit(this.productCard.nativeElement)
   }
 
   onSaveChanges(): void {

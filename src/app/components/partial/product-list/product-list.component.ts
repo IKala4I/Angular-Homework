@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core'
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {IProduct} from '../../../interfaces/interfaces'
 import {ProductCardComponent} from './product-card/product-card.component'
@@ -18,7 +18,8 @@ export class ProductListComponent {
   @Output() isProductInEditModeChange: EventEmitter<boolean> = new EventEmitter<boolean>()
   @Output() productRemoved: EventEmitter<string> = new EventEmitter<string>()
 
-  constructor() {}
+  constructor() {
+  }
 
   removeProduct(productId: string): void {
     this.productRemoved.emit(productId)
@@ -27,5 +28,13 @@ export class ProductListComponent {
   toggleEditMode(): void {
     const state = !this.isProductInEditMode
     this.isProductInEditModeChange.emit(state)
+  }
+
+  scrollIntoView(element: HTMLElement): void {
+    if (element) {
+      setTimeout((): void => {
+        element.scrollIntoView({behavior: 'smooth'});
+      }, 0)
+    }
   }
 }

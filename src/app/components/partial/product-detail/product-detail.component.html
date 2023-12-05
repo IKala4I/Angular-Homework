@@ -1,12 +1,26 @@
-@if (product) {
-  <div class="product">
-    <h3>{{ product.name }}</h3>
-    <p>{{ product.price | currency }}</p>
+@if (isEditMode) {
+  <app-product-form [product]="product" [submitAction]="onSaveChanges.bind(this)"></app-product-form>
+} @else if (product) {
+  <div class="productCard">
+    <div>
+      <h3>{{ product.name }}</h3>
+      <p class="price">{{ product.price | currency }}</p>
+    </div>
     <p>{{ product.description }}</p>
     @if (product.tags) {
-      @for (tag of product.tags;track tag.id) {
-        <p [style.background-color]="getTagBackground(tag.name)">{{ tag.name }}</p>
-      }
+      <div class="tags">
+        @for (tag of product.tags;track tag.id) {
+          <p class="tag" [style.background-color]="getTagBackground(tag.name)">{{ tag.name }}</p>
+        }
+      </div>
     }
+
+    <div class="buttons">
+      <button class="formButton" (click)="removeProduct(product.id)">
+        Delete {{ product.name }}
+      </button>
+      <button class="formButton" (click)="toggleEditForm()">Edit {{ product.name }}
+      </button>
+    </div>
   </div>
 }

@@ -3,10 +3,22 @@
   gap: 1rem;
   flex-wrap: wrap;
   padding-left: 1rem;
+  flex-direction: row;
 
   li {
     width: 40%;
   }
+}
+
+.productList.editMode {
+  flex-direction: column;
+}
+
+.nothingFound{
+  text-align: center;
+  font-size: max(14px, 2vw);
+  font-weight: bold;
+  margin-top: 1rem;
 }
 
 @media (max-width: 770px) {

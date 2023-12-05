@@ -49,6 +49,10 @@ body {
     border-radius: 15px;
     margin-left: 7.2px;
   }
+
+  .tag {
+    color: white;
+  }
 }
 
 .formButton {
@@ -74,8 +78,83 @@ body {
   color: gray;
 }
 
-@media (max-width: 850px){
-  html{
+.backButtonWrapper {
+  padding: 0.75rem 0;
+  width: 60%;
+
+  button {
+    padding: 0.75rem 1rem;
+    font-size: max(14px, 1.2vw);
+    letter-spacing: 1px;
+    font-weight: 500;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    font-weight: 600;
+  }
+}
+
+.productCard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  height: 100%;
+  font-size: max(14px, 1.2vw);
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+
+  h3 {
+    font-weight: bold;
+  }
+
+  .price {
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  .tags {
+    margin: 0.5rem 0;
+    display: flex;
+    column-gap: 0.75rem;
+    flex-wrap: wrap;
+    width: max(150px, 70%);
+
+    .tag {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 20px;
+      flex: 0.5 1 auto;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .tag::before {
+      content: '#';
+      margin-right: 3px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 0.25rem 1rem;
+    flex-wrap: wrap;
+
+    button {
+      flex: 0 1 45%;
+    }
+  }
+}
+
+
+
+@media (max-width: 850px) {
+  html {
     font-size: 12px;
   }
 }

@@ -1,12 +1,13 @@
 <div class="listWrapper">
   @if (products.length) {
-    <ul class="productList">
+    <ul [ngClass]="{'productList':true, 'editMode':isProductInEditMode}">
       @for (product of products;track product.id) {
         <li>
           <app-product-card [product]="product"
                             [isEditButtonDisabled]="isProductInEditMode"
                             (productRemoved)="removeProduct($event)"
-                            (editModeToggled)="toggleEditMode()">
+                            (editModeToggled)="toggleEditMode()"
+                            (productInEditMode)="scrollIntoView($event)">
           </app-product-card>
         </li>
       }
