@@ -3,7 +3,7 @@
     <app-product-form [product]="product" [submitAction]="onSaveChanges.bind(this)"></app-product-form>
   } @else {
     <h3>{{ product.name }}</h3>
-    <p>{{ product.price | currency }}</p>
+    <p class="price">{{ product.price | currency }}</p>
     @if (product.tags) {
       <div class="tags">
         @for (tag of product.tags;track tag.id) {
@@ -11,8 +11,14 @@
         }
       </div>
     }
-    <button (click)="showDetail(product.id)" [disabled]="isEditButtonDisabled">Show details</button>
-    <button (click)="removeProduct(product.id)" [disabled]="isEditButtonDisabled">Delete {{ product.name }}</button>
-    <button (click)="toggleEditForm()" [disabled]="isEditButtonDisabled">Edit {{ product.name }}</button>
+    <div class="buttons">
+      <button class="formButton" (click)="showDetail(product.id)" [disabled]="isEditButtonDisabled">Show details
+      </button>
+      <button class="formButton" (click)="removeProduct(product.id)" [disabled]="isEditButtonDisabled">
+        Delete {{ product.name }}
+      </button>
+      <button class="formButton" (click)="toggleEditForm()" [disabled]="isEditButtonDisabled">Edit {{ product.name }}
+      </button>
+    </div>
   }
 </div>

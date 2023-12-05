@@ -17,26 +17,31 @@
   !shouldHideTagForm">
 </app-tag-list>
 
-<button
-  [hidden]="!shouldHideTagForm ||
+<div class="buttons">
+  <button
+    class="formButton"
+    [hidden]="!shouldHideTagForm ||
   shouldHideFilterForm"
-  (click)="showEditTagForm()">
-  {{ shouldHideTagList ? 'Show tag list' : 'Hide tag list' }}
-</button>
+    (click)="showEditTagForm()">
+    {{ shouldHideTagList ? 'Show tag list' : 'Hide tag list' }}
+  </button>
 
-<button
-  [hidden]="!shouldHideTagForm ||
+  <button
+    class="formButton"
+    [hidden]="!shouldHideTagForm ||
   shouldHideFilterForm"
-  (click)="showTagForm()">
-  Create new tag
-</button>
+    (click)="showTagForm()">
+    Create new tag
+  </button>
 
-<a routerLink="/product-list/create-product"
-   [hidden]="!shouldHideTagForm ||
+  <a routerLink="/product-list/create-product"
+     class="formButton"
+     [hidden]="!shouldHideTagForm ||
    !shouldHideTagList ||
    shouldHideFilterForm">
-  Create new product
-</a>
+    Create new product
+  </a>
+</div>
 
 <app-product-list
   [products]="filteredProducts"

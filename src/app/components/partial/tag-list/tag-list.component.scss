@@ -1,0 +1,20 @@
+.tagsWrapper{
+  padding: 1rem;
+
+  h3{
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: max(14px, 1.2vw);
+  }
+
+  .tags {
+    margin: 0.5rem 0;
+    display: flex;
+    row-gap: 0.75rem;
+    flex-direction: column;
+
+    .tag{
+      width:fit-content;
+    }
+  }
+}

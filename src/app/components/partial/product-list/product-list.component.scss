@@ -1,7 +1,25 @@
-/* Styles for the product-list component */
-
-.list {
+.productList {
   display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
-  justify-content: space-between;
+  padding-left: 1rem;
+
+  li {
+    width: 40%;
+  }
+}
+
+@media (max-width: 770px) {
+  .productList {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 610px) {
+  .productList {
+    li {
+      width: 70%;
+    }
+  }
 }

@@ -3,6 +3,9 @@
     <input class="input" type="text" [(ngModel)]="tag.name" name="name" required minlength="2" maxlength="10" #name='ngModel'
            [appTagNameValidator]="tag.name">
   </label>
+  <div [ngClass]="{'hint':true, 'disabled':(name.invalid && (name.dirty || name.touched))}">
+    Maximum length is 10 characters
+  </div>
   @if (name.invalid && (name.dirty || name.touched)) {
     <div class="error">
       @if (name.errors?.['required']) {

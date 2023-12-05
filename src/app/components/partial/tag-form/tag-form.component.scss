@@ -1,13 +1,25 @@
-.color{
+.hint {
+  display: block;
+  position: relative;
+  padding: max(5px, 1%) 0.5rem;
+  top: -10px;
+  font-size: max(10px, 1vw);
+}
+
+.hint.disabled {
+  display: none;
+}
+
+.color {
   height: 3rem;
 }
 
-button:first-of-type{
+button:first-of-type {
   margin-right: 0.5rem;
 }
 
-@media (max-width: 400px){
-  button{
-    width:80%;
+@media (max-width: 400px) {
+  button {
+    width: 80%;
   }
 }

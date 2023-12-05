@@ -1,7 +1,9 @@
 @if (isEditMode) {
   <app-tag-form [tag]="tag" (closedForm)="onClosedForm()" [submitAction]="onSaveChanges.bind(this)"></app-tag-form>
 } @else {
-  <p [style.background-color]="getTagBackground(tag.name)">{{ tag.name }}</p>
-  <button (click)="toggleEditForm()">Edit Tag</button>
-  <button (click)="removeTag(tag.id)">Delete Tag</button>
+  <p class="tag" [style.background-color]="getTagBackground(tag.name)">{{ tag.name }}</p>
+  <div class="actionButtons">
+  <button class="formButton" (click)="toggleEditForm()" [disabled]="isEditButtonDisabled">Edit Tag</button>
+  <button class="formButton" (click)="removeTag(tag.id)" [disabled]="isEditButtonDisabled">Delete Tag</button>
+  </div>
 }

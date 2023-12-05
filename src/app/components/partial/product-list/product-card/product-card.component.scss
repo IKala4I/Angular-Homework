@@ -1,40 +1,52 @@
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 16px;
-  margin: 16px;
-  width: 300px;
+  padding: 1rem;
+  height: 100%;
+  font-size: max(14px, 1.2vw);
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 
   h3 {
-    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .price {
+    font-style: italic;
   }
 
   .tags {
+    margin: 0.5rem 0;
     display: flex;
-    column-gap: 15px;
+    column-gap: 0.75rem;
+    flex-wrap: wrap;
+    width: max(150px, 70%);
 
     .tag {
-      padding:5px;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 20px;
+      flex: 0.5 1 auto;
+      cursor: pointer;
+      position: relative;
+    }
 
-
-      &::before {
-        content: '#';
-      }
+    .tag::before {
+      content: '#';
+      margin-right: 3px;
     }
   }
 
-  button {
-    margin-top: 8px;
-    margin-right: 8px;
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .buttons {
+    display: flex;
+    gap: 0.25rem 1rem;
+    flex-wrap: wrap;
 
-    &:hover {
-      background-color: #0056b3;
+    button {
+      flex: 0 1 45%;
     }
   }
 }
