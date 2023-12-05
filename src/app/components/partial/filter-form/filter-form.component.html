@@ -1,15 +1,20 @@
-<div class="search">
+<div class="formWrapper">
   <form>
-    <label>no tags
-      <input type="checkbox" name="noTags" value="noTags" (change)="onCheckChange($event)" [checked]="isNoTags">
-    </label>
-    @for (tag of tags;track tag.id) {
-      <label>{{ tag.name }}
-        <input type="checkbox" [name]="tag.name" [value]="tag.name"
-               [disabled]="isNoTags" [checked]="isSelected(tag.name)"
-               (change)="onCheckChange($event)">
+    <fieldset>
+      <legend>Filters</legend>
+      <label>
+        <span>no tags</span>
+        <input type="checkbox" name="noTags" value="noTags" (change)="onCheckChange($event)" [checked]="isNoTags">
       </label>
-    }
+      @for (tag of tags;track tag.id) {
+        <label>
+          <span>{{ tag.name }}</span>
+          <input type="checkbox" [name]="tag.name" [value]="tag.name"
+                 [disabled]="isNoTags" [checked]="isSelected(tag.name)"
+                 (change)="onCheckChange($event)">
+        </label>
+      }
+    </fieldset>
   </form>
-  <button type="button" [disabled]="!isAnySelected()" (click)="resetFilterForm()">Reset filters</button>
+  <button type="button" class="formButton" [disabled]="!isAnySelected()" (click)="resetFilterForm()">Reset filters</button>
 </div>

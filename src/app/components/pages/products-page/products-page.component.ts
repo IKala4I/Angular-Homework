@@ -11,6 +11,7 @@ import {ProductService} from '../../../services/product.service'
 import {TagService} from '../../../services/tag.service'
 import {takeUntil} from 'rxjs'
 import {Destroyer} from '../../../utils/destroyer'
+import {NgForm} from '@angular/forms'
 
 @Component({
   selector: 'app-products-page',
@@ -66,5 +67,6 @@ export class ProductsPageComponent extends Destroyer implements OnInit {
   onAddTag(): void {
     this.tagService.addTag(this.newTag)
     this.shouldHideTagForm = !this.shouldHideTagForm
+    this.newTag = new Tag(this.tagService.generateTagId(), '', '#557A95')
   }
 }

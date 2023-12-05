@@ -62,9 +62,10 @@ body {
   border-radius: 15px;
   transition: background-color 0.5s;
   margin-top: 0.5rem;
+  margin-left: 1rem;
 }
 
-.formButton:hover {
+.formButton:not(:disabled):hover {
   background-color: #918578;
   cursor: pointer;
   font-weight: 600;

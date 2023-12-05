@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ITag} from '../../../interfaces/interfaces'
-import {FormsModule} from '@angular/forms'
+import {FormsModule, NgForm} from '@angular/forms'
 import {TagNameValidatorDirective} from '../../../directives/tag-form-validator.directive'
 
 @Component({
@@ -17,14 +17,23 @@ export class TagFormComponent {
 
   @Output() closedForm: EventEmitter<boolean> = new EventEmitter<boolean>()
 
+  @ViewChild('tagForm') tagForm!: NgForm
+
   constructor() {
   }
 
   onSubmit(): void {
     this.submitAction()
+    this.clearFormValidators()
   }
 
   closeForm(): void {
     this.closedForm.emit(true)
+    this.clearFormValidators()
+  }
+
+  private clearFormValidators(): void {
+    this.tagForm.control.markAsUntouched()
+    this.tagForm.control.markAsPristine()
   }
 }
